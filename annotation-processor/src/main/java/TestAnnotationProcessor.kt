@@ -19,14 +19,28 @@ class TestAnnotationProcessor : AbstractProcessor() {
         const val KAPT_KOTLIN_GENERATED_OPTION_NAME = "kapt.kotlin.generated"
     }
 
+    fun log(line:String) {
+        File("./kotlin.log").appendText(line + "\n")
+    }
+
     override fun process(annotations: MutableSet<out TypeElement>?, roundEnv: RoundEnvironment): Boolean {
+        log("annotations: $annotations")
+        log("roundEnv: $roundEnv")
+
         val annotatedElements = roundEnv.getElementsAnnotatedWith(TestAnnotation::class.java)
+        log("annotatedElements: $annotatedElements")
+
         if (annotatedElements.isEmpty()) return false
+
+        log("processingEnv: $processingEnv")
+        log("processingEnv.options: " + processingEnv.options)
 
         val kaptKotlinGeneratedDir = processingEnv.options[KAPT_KOTLIN_GENERATED_OPTION_NAME] ?: run {
             processingEnv.messager.printMessage(ERROR, "Can't find the target directory for generated Kotlin files.")
             return false
         }
+
+        log("kaptKotlinGeneratedDir: $kaptKotlinGeneratedDir")
 
         val generatedKtFile = kotlinFile("test.generated") {
             for (element in annotatedElements) {
@@ -38,6 +52,8 @@ class TestAnnotationProcessor : AbstractProcessor() {
                 }
             }
         }
+
+        log("generatedKtFile: $generatedKtFile")
 
         File(kaptKotlinGeneratedDir, "testGenerated.kt").apply {
             parentFile.mkdirs()

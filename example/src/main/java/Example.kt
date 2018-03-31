@@ -4,3 +4,6 @@ import org.kotlin.annotationProcessor.TestAnnotation
 
 @TestAnnotation
 class SimpleClass
+
+@TestAnnotation
+class AnotherClass

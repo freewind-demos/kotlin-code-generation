@@ -8,4 +8,8 @@ class AnnotationTest {
     @Test fun testSimple() {
         assertEquals("SimpleClass", SimpleClass().simpleClassName)
     }
+
+    @Test fun testAnother() {
+        assertEquals("AnotherClass", AnotherClass().simpleClassName)
+    }
 }
