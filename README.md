@@ -15,3 +15,8 @@ Run:
 ```
 
 You will see logs from `annotation-processor/src/main/java/TestAnnotationProcessor.kt` from the generated log file: `./kotlin.log`
+
+Notice
+------
+
+AKPT is not supported by Kotlin-JS
