@@ -6,4 +6,5 @@
 /build
 /example/build
 /annotation-processor/build
-/captures
+/capturesbuild/
+/example-js/build/
